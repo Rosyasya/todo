@@ -53,6 +53,10 @@
   padding: 10px;
   gap: 10px;
 
+  &.completed {
+    background: darkgrey;
+  }
+
   &-title {
     flex: 1;
   }

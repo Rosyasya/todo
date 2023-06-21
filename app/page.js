@@ -6,7 +6,25 @@ import {useState} from "react";
 
 export default function Home() {
     const [edit, setEdit] = useState(false);
-    let title = 'title';
+
+    const todoList = [
+        {
+            title: 'first buy tea',
+            isCompleted: false,
+        },
+        {
+            title: 'second buy tea',
+            isCompleted: false,
+        },
+        {
+            title: 'third buy tea',
+            isCompleted: true,
+        },
+        {
+            title: 'fourth buy tea',
+            isCompleted: false,
+        },
+    ]
 
     return (
         <div className="todo__wrapper">
@@ -20,18 +38,22 @@ export default function Home() {
                     <Button title="Add task" />
                 </div>
                 <div className="todo__info">
-                    <div className="todo__item">
-                        <input type="checkbox"/>
-                        <div className="todo__item-title" style={{display: edit ? 'none' : 'block'}}>
-                            <p>{title}</p>
-                        </div>
-                        <div style={{display: edit ? 'block' : 'none', flex: 1}}>
-                            <Input size="100%"/>
-                        </div>
-                        <div className="circle __star"></div>
-                        <div className="circle __edit"></div>
-                        <div className="circle __cross"></div>
-                    </div>
+                    {todoList.sort((a, b) => a.isCompleted - b.isCompleted).map(el => {
+                        return (
+                            <div className={el.isCompleted ? "todo__item completed" : 'todo__item'}>
+                                <input type="checkbox" checked={el.isCompleted} />
+                                <div className="todo__item-title" style={{display: edit ? 'none' : 'block'}}>
+                                    <p>{el.title}</p>
+                                </div>
+                                <div style={{display: edit ? 'block' : 'none', flex: 1}}>
+                                    <Input size="100%"/>
+                                </div>
+                                <div className="circle __star"></div>
+                                <div className="circle __edit"></div>g
+                                <div className="circle __cross"></div>
+                            </div>
+                        )
+                    })}
                 </div>
                 <div className="todo__complete">
                     <input type="checkbox"/>
