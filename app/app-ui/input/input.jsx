@@ -1,7 +1,8 @@
 import './input.scss'
 import {useState} from "react";
+import PropTypes from "prop-types";
 
-const Input = ( { placeholder, size, label = '', isDisabled = false } ) => {
+const Input = ( { placeholder, size, label, isDisabled } ) => {
     let [value, setValue] = useState('');
 
     return (
@@ -13,5 +14,12 @@ const Input = ( { placeholder, size, label = '', isDisabled = false } ) => {
         </div>
     );
 };
+
+Input.propTypes = {
+    placeholder: PropTypes.string,
+    size: PropTypes.string,
+    label: PropTypes.string,
+    isDisabled: PropTypes.bool,
+}
 
 export default Input;

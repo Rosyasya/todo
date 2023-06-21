@@ -17,7 +17,7 @@ export default function Home() {
                 </div>
                 <div className="todo__input">
                     <Input size="550px" placeholder="Text" />
-                    <Button title="Add task" isReversed={true} />
+                    <Button title="Add task" />
                 </div>
                 <div className="todo__info">
                     <div className="todo__item">

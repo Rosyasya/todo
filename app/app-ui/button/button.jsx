@@ -1,6 +1,7 @@
 import './button.scss'
+import PropTypes from "prop-types";
 
-const Button = ( { title = '', type = '', icon = '', iconSize = '', isReversed = false, callback, buttonSize = '' } ) => {
+const Button = ( { title, type, icon, iconSize , isReversed, callback, buttonSize } ) => {
     return (
         <>
             <button onClick={callback} className="button">
@@ -10,5 +11,15 @@ const Button = ( { title = '', type = '', icon = '', iconSize = '', isReversed =
         </>
     );
 };
+
+Button.propTypes = {
+    title: PropTypes.string.isRequired,
+    type: PropTypes.string,
+    icon: PropTypes.string,
+    iconSize: PropTypes.string,
+    buttonSize: PropTypes.string,
+    isReversed: PropTypes.bool,
+    callback: PropTypes.func,
+}
 
 export default Button;
