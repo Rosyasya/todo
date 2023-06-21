@@ -1,0 +1,31 @@
+.input {
+  border: 1px solid grey;
+  width: 100%;
+  display: flex;
+  border-radius: 8px;
+  position: relative;
+  align-items: center;
+
+  &__item {
+    border: none;
+    outline: none;
+    height: 100%;
+    border-radius: 8px;
+    padding: 10px 5px;
+    font-size: 14px;
+    color: grey;
+  }
+
+  &__label {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    color: grey;
+  }
+
+  input[type="checkbox"] {
+    .input {
+      border: none;
+    }
+  }
+}
