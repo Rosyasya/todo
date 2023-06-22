@@ -1,5 +1,4 @@
 .input {
-  border: 1px solid grey;
   width: 100%;
   display: flex;
   border-radius: 8px;
@@ -7,13 +6,21 @@
   align-items: center;
 
   &__item {
-    border: none;
+    border: 1px solid grey;
     outline: none;
     height: 100%;
     border-radius: 8px;
     padding: 10px 5px;
     font-size: 14px;
     color: grey;
+
+    &:hover {
+      border: 1px solid lightblue;
+    }
+
+    &:focus {
+      border: 1px solid lightblue;
+    }
   }
 
   &__label {
