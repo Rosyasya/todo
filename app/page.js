@@ -4,6 +4,7 @@ import {useState} from "react";
 import TodoForm from "@/app/component/todo-form/todo-form";
 import TodoSearch from "@/app/component/todo-search/todo-search";
 import Todo from "@/app/component/todo/todo";
+import input from "@/app/app-ui/input/input";
 
 export default function Home() {
     const [inputAddTodoValue, setInputAddTodoValue] = useState('');
@@ -35,11 +36,17 @@ export default function Home() {
         setTodos(() => todos.filter(todo => todo.id !== id));
     }
 
+    const createTodo = e => {
+        e.preventDefault();
+        setTodos([...todos, {title: inputAddTodoValue, isCompleted: false, id: todos.length + 1}]);
+        setInputAddTodoValue('');
+    }
+
     return (
         <div className="todo__wrapper">
             <div className="todo">
                 <TodoSearch />
-                <TodoForm inputAddTodoValue={inputAddTodoValue} setInputAddTodoValue={setInputAddTodoValue} todos={todos} setTodos={setTodos} />
+                <TodoForm inputAddTodoValue={inputAddTodoValue} setInputAddTodoValue={setInputAddTodoValue} callback={createTodo} />
                 <div className="todo__info">
                     <ul>
                         {todos.sort((a, b) => a.isCompleted - b.isCompleted).map(todo => {
