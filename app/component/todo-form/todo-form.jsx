@@ -3,47 +3,28 @@ import Button from "@/app/app-ui/button/button";
 import './todo-form.scss'
 import {useState} from "react";
 
-const TodoForm = () => {
-    const [todos, setTodos] = useState([
-        {
-            title: 'first buy tea',
-            isCompleted: false,
-            id: 0,
-        },
-        {
-            title: 'second buy tea',
-            isCompleted: false,
-            id: 1,
-        },
-        {
-            title: 'third buy tea',
-            isCompleted: false,
-            id: 2,
-        },
-        {
-            title: 'fourth buy tea',
-            isCompleted: false,
-            id: 3,
-        },
-    ]);
-
+const TodoForm = ( { onCreate } ) => {
     const [value, setValue] = useState('');
-    const inputAddTodoHandler = e => {
-        e.preventDefault();
-        setValue(e.target.value);
+    const [todo, setTodo] = useState({
+        title: '',
+        isCompleted: false,
+    });
+    const createTodo = e => {
+        setValue(e.target.value)
+        setTodo({title: value, isCompleted: false});
     }
 
-    const createTodo = e => {
+    const onSubmit = e => {
         e.preventDefault();
-        setTodos([...todos, {title: value, isCompleted: false, id: todos.length + 1}]);
+        onCreate(todo);
         setValue('');
     }
 
     return (
         <div className="todo__input">
             <form action="" style={{display: "flex", justifyContent: "space-between", width: '100%'}}>
-                <Input size="550px" placeholder="Text" callback={inputAddTodoHandler} value={value} />
-                <Button isDisabled={value === ''} title="Add task" callback={createTodo} />
+                <Input size="550px" placeholder="Text" callback={createTodo} value={value} />
+                <Button isDisabled={value === ''} title="Add task" callback={onSubmit} />
             </form>
         </div>
     );

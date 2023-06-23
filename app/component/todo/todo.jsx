@@ -2,17 +2,13 @@ import Input from "@/app/app-ui/input/input";
 import './todo.scss'
 import {useState} from "react";
 
-const Todo = () => {
+const Todo = ( { todo, removeTodo } ) => {
     const [show, setShow] = useState(false);
     const [inputValue, setInputValue] = useState('');
 
     const todoInputHandler = e => {
         e.preventDefault();
         setInputValue(e.target.value);
-    }
-
-    const removeTodo = id => {
-        setTodos(() => todos.filter(todo => todo.id !== id));
     }
 
     return (
