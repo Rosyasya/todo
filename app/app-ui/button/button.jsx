@@ -1,10 +1,10 @@
 import './button.scss'
 import PropTypes from "prop-types";
 
-const Button = ( { title, type, callback } ) => {
+const Button = ( { title, type, callback, isDisabled } ) => {
     return (
         <>
-            <button onClick={callback} className="button">
+            <button disabled={isDisabled} onClick={callback} className="button">
                 {title}
             </button>
         </>
@@ -15,6 +15,7 @@ Button.propTypes = {
     title: PropTypes.string.isRequired,
     type: PropTypes.string,
     callback: PropTypes.func,
+    isDisabled: PropTypes.bool,
 }
 
 export default Button;
