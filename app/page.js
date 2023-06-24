@@ -7,45 +7,49 @@ import Todo from "@/app/component/todo/todo";
 import input from "@/app/app-ui/input/input";
 
 export default function Home() {
+    const [value, setValue] = useState('');
     const [todos, setTodos] = useState([
         {
             title: 'first buy tea',
             isCompleted: false,
-            id: 0,
         },
         {
             title: 'second buy tea',
             isCompleted: false,
-            id: 1,
         },
         {
             title: 'third buy tea',
             isCompleted: false,
-            id: 2,
         },
         {
             title: 'fourth buy tea',
             isCompleted: false,
-            id: 3,
         },
     ]);
-
-    const handleTodo = todo => {
+    const createTodo = todo => {
         setTodos([...todos, todo]);
+
+    }
+    const removeTodo = todo => {
+        setTodos(() => todos.filter(item => item !== todo));
+
+    }
+    const findTodo = e => {
+        setValue(e.target.value);
     }
 
-    const removeTodo = id => {
-        setTodos(() => todos.filter(todo => todo.id !== id));
-    }
+    const filteredTodos = todos.filter(todo => {
+        return todo.title.toLowerCase().includes(value.toLowerCase());
+    })
 
     return (
         <div className="todo__wrapper">
             <div className="todo">
-                <TodoSearch />
-                <TodoForm onCreate={handleTodo} />
+                <TodoSearch onFind={findTodo} />
+                <TodoForm onCreate={createTodo} />
                 <div className="todo__info">
                     <ul>
-                        {todos.sort((a, b) => a.isCompleted - b.isCompleted).map(todo => {
+                        {filteredTodos.sort((a, b) => a.isCompleted - b.isCompleted).map(todo => {
                             return <li><Todo todo={todo} removeTodo={removeTodo} /></li>
                         })}
                     </ul>

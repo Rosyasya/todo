@@ -19,7 +19,7 @@ const Todo = ( { todo, removeTodo } ) => {
             </div>
             <div className="circle __star"></div>
             <div className="circle __edit" onClick={() => setShow(!show)}></div>
-            <div className="circle __cross" onClick={() => removeTodo(todo.id)}></div>
+            <div className="circle __cross" onClick={() => removeTodo(todo)}></div>
         </div>
     );
 };
